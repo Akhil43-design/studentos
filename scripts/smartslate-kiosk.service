@@ -1,0 +1,15 @@
+[Unit]
+Description=StudentOS Chromium Touch Kiosk Display Service
+After=smartslate.service
+Wants=smartslate.service
+
+[Service]
+Type=simple
+User=pi
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/xinit /home/pi/notepad/scripts/kiosk.sh -- :0 vt7 -nolisten tcp
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=graphical.target

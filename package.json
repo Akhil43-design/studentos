@@ -1,0 +1,17 @@
+{
+  "name": "smartslate-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SmartSlate - Offline-first digital notebook & LMS for students, teachers, parents, and admins",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix backend && npm install --prefix frontend",
+    "start:pi": "npm run start:pi --prefix backend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "seed": "npm run seed --prefix backend",
+    "build:frontend": "npm run build --prefix frontend"
+  },
+  "keywords": ["smartslate", "pwa", "offline-first", "raspberry-pi", "education", "canvas", "dexie"],
+  "author": "Antigravity Team",
+  "license": "MIT"
+}
