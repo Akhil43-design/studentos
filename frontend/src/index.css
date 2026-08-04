@@ -6,8 +6,9 @@
   body {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    background-color: #FAF9F5;
-    color: #1D1D1F;
+    background-color: #F7F6F3;
+    color: #2E2E2E;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 }
 
@@ -16,7 +17,7 @@
   font-family: 'Material Symbols Outlined';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
@@ -28,75 +29,71 @@
   font-feature-settings: 'liga';
 }
 
-/* Lumio Signature Gradients */
-.gradient-aura {
-  background: linear-gradient(135deg, #2A81FF 0%, #9333EA 100%);
+/* Apple + Notion Muted Accent Badges */
+.accent-blue {
+  background-color: #6B8FD8;
+  color: #FFFFFF;
 }
 
-.gradient-sunset {
-  background: linear-gradient(135deg, #F97316 0%, #EC4899 100%);
+.accent-sage {
+  background-color: #A8C8A2;
+  color: #2E2E2E;
 }
 
-.gradient-emerald {
-  background: linear-gradient(135deg, #10B981 0%, #14B8A6 100%);
+.accent-amber {
+  background-color: #E8C47A;
+  color: #2E2E2E;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #2A81FF 0%, #9333EA 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.accent-coral {
+  background-color: #D98989;
+  color: #FFFFFF;
 }
 
-/* Lumio Glassmorphism Utilities */
+/* Glassmorphism Panel Specification */
 .glass-panel, .glass-card {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
 .dark .glass-panel, .dark .glass-card {
-  background: rgba(29, 29, 31, 0.8);
+  background: rgba(44, 44, 44, 0.82);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glow-shadow {
-  box-shadow: 0 8px 20px rgba(42, 129, 255, 0.2);
-}
-
-.floating-shadow {
-  box-shadow: 0 8px 20px rgba(29, 29, 31, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .academic-card {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(24px);
-  border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 20px rgba(29, 29, 31, 0.04);
+  border-radius: 20px;
+  border: 1px solid #D7D4CF;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
   transition: all 0.2s ease-in-out;
 }
 
 .academic-card:hover {
-  border-color: rgba(42, 129, 255, 0.3);
-  box-shadow: 0 12px 30px rgba(42, 129, 255, 0.1);
+  border-color: #6B8FD8;
+  box-shadow: 0 12px 30px rgba(107, 143, 216, 0.12);
 }
 
 /* Traffic light sync status dots */
 .sync-dot-synced {
-  background-color: #10B981;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+  background-color: #A8C8A2;
+  box-shadow: 0 0 8px rgba(168, 200, 162, 0.5);
 }
 
 .sync-dot-pending {
-  background-color: #F59E0B;
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  background-color: #E8C47A;
+  box-shadow: 0 0 8px rgba(232, 196, 122, 0.5);
 }
 
 .sync-dot-offline {
-  background-color: #94A3B8;
+  background-color: #B7B7B7;
 }
 
 /* Scrollbar Customization */
@@ -108,11 +105,11 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(42, 129, 255, 0.3);
+  background: rgba(118, 118, 118, 0.3);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(42, 129, 255, 0.6);
+  background: rgba(107, 143, 216, 0.6);
 }
 
 /* Animation utilities */
