@@ -98,9 +98,9 @@ async function seed() {
     const sampleCanvasData = {
         background: 'grid',
         shapes: [
-            { type: 'line', points: [100, 100, 300, 100], color: '#38BDF8', width: 4 },
-            { type: 'rect', x: 100, y: 150, width: 200, height: 120, color: '#818CF8', strokeWidth: 3 },
-            { type: 'path', points: [{x: 50, y: 300}, {x: 80, y: 250}, {x: 120, y: 320}, {x: 200, y: 290}], color: '#F43F5E', width: 3 }
+            { type: 'line', x1: 100, y1: 100, x2: 300, y2: 100, color: '#2A81FF', width: 4 },
+            { type: 'rect', x: 100, y: 150, w: 200, h: 120, color: '#9333EA', width: 3 },
+            { type: 'path', points: [{x: 50, y: 300}, {x: 80, y: 250}, {x: 120, y: 320}, {x: 200, y: 290}], color: '#F97316', width: 3 }
         ]
     };
 
@@ -124,7 +124,7 @@ async function seed() {
     // Attendance
     const today = new Date().toISOString().split('T')[0];
     await db.run(
-        `INSERT INTO attendance (id, date, student_id, class_id, subject_id, status, remarks, recorded_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(date, student_id, subject_id) DO NOTHING`,
+        `INSERT INTO attendance (id, date, student_id, class_id, subject_id, status, remarks, recorded_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO NOTHING`,
         ['att_demo_1', today, 'std_1', 'cls_10A', 'sbj_phy', 'present', 'Active participant in laboratory class', 'usr_teacher_1']
     );
 

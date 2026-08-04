@@ -1,18 +1,28 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 
-export function useDrawingCanvas() {
+export function useDrawingCanvas({ initialData = null, initialImage = null } = {}) {
   const canvasRef = useRef(null);
-  const [tool, setTool] = useState('pen'); // 'pen', 'highlighter', 'marker', 'brush', 'eraser', 'line', 'rect', 'circle', 'arrow'
-  const [color, setColor] = useState('#38BDF8');
+  const [tool, setTool] = useState('pen'); // 'pen', 'highlighter', 'marker', 'brush', 'eraser', 'line', 'rect', 'circle'
+  const [color, setColor] = useState('#2A81FF');
   const [strokeWidth, setStrokeWidth] = useState(4);
-  const [background, setBackground] = useState('grid'); // 'blank', 'grid', 'lines', 'dots'
+  const [background, setBackground] = useState(initialData?.background || 'grid');
   
   const [isDrawing, setIsDrawing] = useState(false);
   const [history, setHistory] = useState([]);
   const [historyStep, setHistoryStep] = useState(-1);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
-  const [shapes, setShapes] = useState([]);
+  const [shapes, setShapes] = useState(initialData?.shapes || []);
   const [currentPath, setCurrentPath] = useState([]);
+
+  // Sync initialData when loading an existing drawing
+  useEffect(() => {
+    if (initialData) {
+      if (initialData.background) setBackground(initialData.background);
+      if (initialData.shapes && Array.isArray(initialData.shapes)) {
+        setShapes(initialData.shapes);
+      }
+    }
+  }, [initialData]);
 
   // Clear canvas
   const clearCanvas = useCallback(() => {
@@ -72,18 +82,27 @@ export function useDrawingCanvas() {
     ctx.restore();
   };
 
-  // Redraw canvas with all shapes and background
+  // Redraw canvas with background, loaded preview image, and all shape strokes
   const redrawCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     drawBackground(ctx, canvas.width, canvas.height, background);
 
+    // If initialImage preview is provided and no active shapes exist yet, draw base image
+    if (initialImage && shapes.length === 0) {
+      const img = new Image();
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      };
+      img.src = initialImage;
+    }
+
     shapes.forEach(shape => {
       ctx.save();
-      ctx.strokeStyle = shape.color;
-      ctx.fillStyle = shape.color;
-      ctx.lineWidth = shape.width;
+      ctx.strokeStyle = shape.color || '#2A81FF';
+      ctx.fillStyle = shape.color || '#2A81FF';
+      ctx.lineWidth = shape.width || shape.strokeWidth || 4;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
@@ -95,10 +114,10 @@ export function useDrawingCanvas() {
 
       if (shape.tool === 'eraser') {
         ctx.globalCompositeOperation = 'destination-out';
-        ctx.lineWidth = shape.width * 2;
+        ctx.lineWidth = (shape.width || 4) * 2;
       }
 
-      if (shape.type === 'path' && shape.points.length > 0) {
+      if (shape.type === 'path' && shape.points && shape.points.length > 0) {
         ctx.beginPath();
         ctx.moveTo(shape.points[0].x, shape.points[0].y);
         for (let i = 1; i < shape.points.length; i++) {
@@ -107,20 +126,26 @@ export function useDrawingCanvas() {
         ctx.stroke();
       } else if (shape.type === 'line') {
         ctx.beginPath();
-        ctx.moveTo(shape.x1, shape.y1);
-        ctx.lineTo(shape.x2, shape.y2);
+        const x1 = shape.x1 ?? (shape.points ? shape.points[0] : 0);
+        const y1 = shape.y1 ?? (shape.points ? shape.points[1] : 0);
+        const x2 = shape.x2 ?? (shape.points ? shape.points[2] : 0);
+        const y2 = shape.y2 ?? (shape.points ? shape.points[3] : 0);
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
         ctx.stroke();
       } else if (shape.type === 'rect') {
         ctx.beginPath();
-        ctx.strokeRect(shape.x, shape.y, shape.w, shape.h);
+        const w = shape.w ?? shape.width ?? 100;
+        const h = shape.h ?? shape.height ?? 100;
+        ctx.strokeRect(shape.x, shape.y, w, h);
       } else if (shape.type === 'circle') {
         ctx.beginPath();
-        ctx.arc(shape.x, shape.y, shape.r, 0, Math.PI * 2);
+        ctx.arc(shape.x, shape.y, shape.r || 50, 0, Math.PI * 2);
         ctx.stroke();
       }
       ctx.restore();
     });
-  }, [background, shapes]);
+  }, [background, shapes, initialImage]);
 
   useEffect(() => {
     redrawCanvas();
@@ -163,9 +188,11 @@ export function useDrawingCanvas() {
         ctx.lineJoin = 'round';
         if (tool === 'highlighter') ctx.globalAlpha = 0.4;
         ctx.beginPath();
-        ctx.moveTo(prev[prev.length - 1].x, prev[prev.length - 1].y);
-        ctx.lineTo(x, y);
-        ctx.stroke();
+        if (prev.length > 0) {
+          ctx.moveTo(prev[prev.length - 1].x, prev[prev.length - 1].y);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        }
         ctx.restore();
         return next;
       });

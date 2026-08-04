@@ -68,6 +68,7 @@ export default function DrawingStudioPage() {
       updated_at: new Date().toISOString()
     };
 
+    setActiveDrawing(fullData);
     await db.drawings.put(fullData);
 
     if (navigator.onLine) {
@@ -85,7 +86,7 @@ export default function DrawingStudioPage() {
       await queueSyncItem('drawings', drawingId, 'UPDATE', fullData);
     }
 
-    alert('Drawing saved to local database & backend!');
+    alert('Drawing saved successfully!');
     fetchDrawings();
   };
 
@@ -141,7 +142,12 @@ export default function DrawingStudioPage() {
             className="text-lg font-bold bg-transparent text-slate-900 dark:text-slate-100 focus:outline-none border-b border-slate-200 dark:border-slate-800 pb-1"
             placeholder="Drawing Title..."
           />
-          <DrawingCanvas drawingTitle={title} onSave={handleSaveDrawing} />
+          <DrawingCanvas
+            drawingTitle={title}
+            initialData={activeDrawing?.canvas_data || activeDrawing?.canvasData}
+            initialImage={activeDrawing?.preview_img || activeDrawing?.previewImg}
+            onSave={handleSaveDrawing}
+          />
         </div>
       ) : (
         <div>

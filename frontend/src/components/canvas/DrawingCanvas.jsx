@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { exportCanvasAsPNG, exportCanvasAsPDF } from '../../utils/exportUtils';
 
-export default function DrawingCanvas({ drawingTitle = 'Untitled Drawing', onSave }) {
+export default function DrawingCanvas({ drawingTitle = 'Untitled Drawing', initialData = null, initialImage = null, onSave }) {
   const {
     canvasRef,
     tool,
@@ -38,7 +38,7 @@ export default function DrawingCanvas({ drawingTitle = 'Untitled Drawing', onSav
     canUndo,
     canRedo,
     shapes
-  } = useDrawingCanvas();
+  } = useDrawingCanvas({ initialData, initialImage });
 
   const colors = ['#38BDF8', '#0F172A', '#F43F5E', '#10B981', '#F59E0B', '#8B5CF6', '#EC4899', '#64748B'];
 
