@@ -23,6 +23,8 @@ import NotebooksPage from './pages/NotebooksPage';
 import DrawingStudioPage from './pages/DrawingStudioPage';
 import GroupChatPage from './pages/GroupChatPage';
 import AssignmentsPage from './pages/AssignmentsPage';
+import GradingPage from './pages/GradingPage';
+import ResearchHubPage from './pages/ResearchHubPage';
 import AttendancePage from './pages/AttendancePage';
 import ExamsPage from './pages/ExamsPage';
 import NotificationsPage from './pages/NotificationsPage';
@@ -66,6 +68,8 @@ function ProtectedLayout() {
             <Route path="drawing" element={<DrawingStudioPage />} />
             <Route path="chat" element={<GroupChatPage />} />
             <Route path="assignments" element={<AssignmentsPage />} />
+            <Route path="grading" element={<GradingPage />} />
+            <Route path="research-hub" element={<ResearchHubPage />} />
             <Route path="attendance" element={<AttendancePage />} />
             <Route path="exams" element={<ExamsPage />} />
             <Route path="notifications" element={<NotificationsPage />} />

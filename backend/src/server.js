@@ -25,6 +25,7 @@ const notificationRoutes = require('./routes/notificationRoutes');
 const syncRoutes = require('./routes/syncRoutes');
 const reportRoutes = require('./routes/reportRoutes');
 const chatRoutes = require('./routes/chatRoutes');
+const gradingRoutes = require('./routes/gradingRoutes');
 
 const app = express();
 const server = http.createServer(app);
@@ -84,6 +85,7 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/sync', syncRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/chat', chatRoutes);
+app.use('/api/grading', gradingRoutes);
 
 // SPA Fallback: Serve index.html for non-API routes when frontend dist exists
 app.get('*', (req, res, next) => {

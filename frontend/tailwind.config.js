@@ -8,9 +8,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        surface: '#f6fafe',
+        'warm-ivory': '#FAF9F5',
+        charcoal: '#1D1D1F',
+        surface: '#FAF9F5',
         'surface-dim': '#d6dade',
-        'surface-bright': '#f6fafe',
+        'surface-bright': '#FAF9F5',
         'surface-container-lowest': '#ffffff',
         'surface-container-low': '#f0f4f8',
         'surface-container': '#eaeef2',
@@ -63,6 +65,11 @@ export default {
           950: '#05070d'
         }
       },
+      borderRadius: {
+        'pill-sm': '1rem',
+        'pill-md': '2rem',
+        'pill-lg': '3rem',
+      },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         display: ['Sora', 'sans-serif'],
@@ -72,7 +79,8 @@ export default {
         glass: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
         'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.4)',
         'academic-sm': '0px 4px 20px rgba(15, 23, 42, 0.05)',
-        'academic-lg': '0px 10px 30px rgba(15, 23, 42, 0.08)'
+        'academic-lg': '0px 10px 30px rgba(15, 23, 42, 0.08)',
+        'lumio-glass': '0 20px 40px rgba(29, 29, 31, 0.05)'
       }
     },
   },
