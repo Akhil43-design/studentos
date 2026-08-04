@@ -45,18 +45,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-[#f6fafe] dark:bg-[#091426] font-sans transition-colors">
-      <div className="w-full max-w-md bg-white dark:bg-[#1e293b] p-8 rounded-3xl border border-[#dfe3e7] dark:border-slate-700 shadow-2xl animate-fade-in relative">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-[#F7F6F3] text-[#2E2E2E] font-sans transition-colors">
+      <div className="w-full max-w-md glass-panel p-8 rounded-3xl border border-[#D7D4CF] shadow-xl animate-fade-in relative">
         
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-[#091426] text-white dark:bg-[#feae2c] dark:text-[#091426] font-display font-extrabold text-2xl flex items-center justify-center mx-auto shadow-sm">
+          <div className="w-12 h-12 rounded-2xl bg-[#6B8FD8] text-white font-display font-bold text-2xl flex items-center justify-center mx-auto shadow-sm">
             S
           </div>
-          <h1 className="font-display font-extrabold text-2xl text-[#091426] dark:text-white">
+          <h1 className="font-display font-bold text-2xl text-[#2E2E2E]">
             SmartSlate Login
           </h1>
-          <p className="text-xs text-[#45474c] dark:text-slate-400">Academic Digital Notebook & LMS Portal</p>
+          <p className="text-xs text-[#767676]">Academic Digital Notebook & LMS Portal</p>
         </div>
 
         {/* Demo Fast Login Bar */}

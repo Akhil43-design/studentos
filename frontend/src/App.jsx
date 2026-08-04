@@ -42,7 +42,7 @@ function ProtectedLayout() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f6fafe] dark:bg-[#091426] transition-colors">
+    <div className="min-h-screen flex flex-col bg-[#F7F6F3] text-[#2E2E2E] transition-colors">
       <Navbar
         onOpenSidebar={() => setSidebarOpen(true)}
         onOpenSearch={() => setSearchOpen(true)}
