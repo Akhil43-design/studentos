@@ -65,16 +65,16 @@ export default function TeacherDashboard() {
     <div className="space-y-6 animate-fade-in font-sans pb-10">
       
       {/* Header Banner */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-[#091426] text-white shadow-xl relative overflow-hidden border border-slate-800">
+      <div className="p-6 sm:p-8 rounded-3xl bg-[#6B8FD8] text-white shadow-md relative overflow-hidden border border-[#D7D4CF]">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-[#835500] dark:text-[#feae2c] text-xs font-bold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold uppercase tracking-wider mb-2">
             <span className="material-symbols-outlined text-sm">co_present</span>
             Teacher Console • Grade 10A
           </div>
-          <h1 className="font-display font-extrabold text-2xl sm:text-3xl text-white">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl text-white">
             Welcome, {user?.fullName || user?.name || 'Dr. Sarah Connor'} 👩‍🏫
           </h1>
-          <p className="text-slate-300 text-xs sm:text-sm mt-1 max-w-xl">
+          <p className="text-white/80 text-xs sm:text-sm mt-1 max-w-xl">
             Department of Science & Mathematics • Attendance marker & batch announcements.
           </p>
         </div>
@@ -82,44 +82,44 @@ export default function TeacherDashboard() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm flex items-center justify-between">
+        <div className="glass-panel p-5 rounded-3xl border border-[#D7D4CF] shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-[#75777d] dark:text-slate-400">Total Enrolled Students</p>
-            <p className="text-2xl font-display font-extrabold text-[#091426] dark:text-white mt-1">{students.length || 28}</p>
+            <p className="text-xs font-semibold text-[#767676]">Total Enrolled Students</p>
+            <p className="text-2xl font-display font-bold text-[#2E2E2E] mt-1">{students.length || 28}</p>
           </div>
-          <div className="w-11 h-11 rounded-xl bg-[#091426] text-white dark:bg-[#feae2c] dark:text-[#091426] flex items-center justify-center">
+          <div className="w-11 h-11 rounded-2xl bg-[#6B8FD8] text-white flex items-center justify-center">
             <span className="material-symbols-outlined text-2xl">groups</span>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm flex items-center justify-between">
+        <div className="glass-panel p-5 rounded-3xl border border-[#D7D4CF] shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-[#75777d] dark:text-slate-400">Class Attendance Today</p>
-            <p className="text-2xl font-display font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">96.4%</p>
+            <p className="text-xs font-semibold text-[#767676]">Class Attendance Today</p>
+            <p className="text-2xl font-display font-bold text-[#2E2E2E] mt-1">96.4%</p>
           </div>
-          <div className="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+          <div className="w-11 h-11 rounded-2xl bg-[#A8C8A2] text-[#2E2E2E] flex items-center justify-center">
             <span className="material-symbols-outlined text-2xl">event_available</span>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm flex items-center justify-between">
+        <div className="glass-panel p-5 rounded-3xl border border-[#D7D4CF] shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-[#75777d] dark:text-slate-400">Active Assignments</p>
-            <p className="text-2xl font-display font-extrabold text-[#835500] dark:text-[#feae2c] mt-1">3 Tasks</p>
+            <p className="text-xs font-semibold text-[#767676]">Active Assignments</p>
+            <p className="text-2xl font-display font-bold text-[#2E2E2E] mt-1">3 Tasks</p>
           </div>
-          <div className="w-11 h-11 rounded-xl bg-amber-100 text-[#835500] flex items-center justify-center">
+          <div className="w-11 h-11 rounded-2xl bg-[#E8C47A] text-[#2E2E2E] flex items-center justify-center">
             <span className="material-symbols-outlined text-2xl">assignment</span>
           </div>
         </div>
       </div>
 
       {/* Attendance Marker */}
-      <div className="bg-white dark:bg-[#1e293b] p-6 rounded-3xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm space-y-5">
+      <div className="glass-panel p-6 rounded-3xl border border-[#D7D4CF] shadow-sm space-y-5">
         
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#dfe3e7] dark:border-slate-700 pb-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#D7D4CF] pb-4">
           <div>
-            <h2 className="font-display font-bold text-lg text-[#091426] dark:text-white">Daily Attendance Marker</h2>
-            <p className="text-xs text-[#45474c] dark:text-slate-400">Mark or update student attendance for Grade 10A</p>
+            <h2 className="font-display font-bold text-lg text-[#2E2E2E]">Daily Attendance Marker</h2>
+            <p className="text-xs text-[#767676]">Mark or update student attendance for Grade 10A</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -127,12 +127,12 @@ export default function TeacherDashboard() {
               type="date"
               value={attendanceDate}
               onChange={(e) => setAttendanceDate(e.target.value)}
-              className="px-3.5 py-2 rounded-xl border border-[#dfe3e7] dark:border-slate-700 bg-[#f0f4f8] dark:bg-slate-800 text-xs font-semibold text-[#091426] dark:text-slate-200 focus:outline-none"
+              className="px-3.5 py-2 rounded-xl border border-[#D7D4CF] bg-[#F2F1EE] text-xs font-semibold text-[#2E2E2E] focus:outline-none"
             />
 
             <button
               onClick={handleSaveAttendance}
-              className="flex items-center gap-2 px-5 py-2 rounded-full bg-[#091426] text-white dark:bg-[#feae2c] dark:text-[#091426] font-display font-bold text-xs shadow-sm hover:opacity-90 transition-all"
+              className="flex items-center gap-2 px-5 py-2 rounded-full bg-[#6B8FD8] text-white font-display font-bold text-xs shadow-sm hover:bg-[#8FB7F5] transition-all"
             >
               <span className="material-symbols-outlined text-base">{markSuccess ? 'done' : 'save'}</span>
               <span>{markSuccess ? 'Attendance Saved!' : 'Save Attendance'}</span>
@@ -142,13 +142,13 @@ export default function TeacherDashboard() {
 
         {/* Search */}
         <div className="relative max-w-md">
-          <span className="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg">search</span>
+          <span className="material-symbols-outlined absolute left-3 top-2.5 text-[#767676] text-lg">search</span>
           <input
             type="text"
             placeholder="Search student by name or roll number..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-[#f0f4f8] dark:bg-slate-800/80 text-xs text-[#091426] dark:text-white border border-[#dfe3e7] dark:border-slate-700 focus:outline-none"
+            className="w-full pl-9 pr-4 py-2 rounded-xl bg-[#F2F1EE] text-xs text-[#2E2E2E] border border-[#D7D4CF] focus:outline-none"
           />
         </div>
 
@@ -156,49 +156,49 @@ export default function TeacherDashboard() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#dfe3e7] dark:border-slate-700 text-xs font-semibold text-[#75777d] dark:text-slate-400 uppercase tracking-wider">
+              <tr className="border-b border-[#D7D4CF] text-xs font-semibold text-[#767676] uppercase tracking-wider">
                 <th className="py-3 px-4">Roll No</th>
                 <th className="py-3 px-4">Student Name</th>
                 <th className="py-3 px-4">Class</th>
                 <th className="py-3 px-4 text-center">Attendance Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#dfe3e7] dark:divide-slate-800 text-xs">
+            <tbody className="divide-y divide-[#D7D4CF] text-xs">
               {filteredStudents.map((std) => {
                 const status = attendanceState[std.student_id] || 'present';
                 return (
-                  <tr key={std.student_id} className="hover:bg-[#f0f4f8] dark:hover:bg-slate-800/40 transition-colors">
-                    <td className="py-3 px-4 font-mono font-bold text-[#091426] dark:text-white">{std.roll_number}</td>
-                    <td className="py-3 px-4 font-bold text-[#091426] dark:text-white">{std.full_name}</td>
-                    <td className="py-3 px-4 text-[#45474c] dark:text-slate-400">{std.class_name || 'Grade 10A'}</td>
+                  <tr key={std.student_id} className="hover:bg-[#F2F1EE] transition-colors">
+                    <td className="py-3 px-4 font-mono font-bold text-[#2E2E2E]">{std.roll_number}</td>
+                    <td className="py-3 px-4 font-bold text-[#2E2E2E]">{std.full_name}</td>
+                    <td className="py-3 px-4 text-[#767676]">{std.class_name || 'Grade 10A'}</td>
                     <td className="py-3 px-4">
                       <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={() => handleToggleAttendance(std.student_id, 'present')}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                          className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
                             status === 'present'
-                              ? 'bg-emerald-500 text-white shadow-sm'
-                              : 'bg-[#f0f4f8] dark:bg-slate-800 text-slate-500 hover:bg-emerald-100'
+                              ? 'bg-[#A8C8A2] text-[#2E2E2E] font-bold shadow-sm'
+                              : 'bg-[#F2F1EE] text-[#767676] hover:bg-[#A8C8A2]/30'
                           }`}
                         >
                           Present
                         </button>
                         <button
                           onClick={() => handleToggleAttendance(std.student_id, 'absent')}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                          className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
                             status === 'absent'
-                              ? 'bg-red-500 text-white shadow-sm'
-                              : 'bg-[#f0f4f8] dark:bg-slate-800 text-slate-500 hover:bg-red-100'
+                              ? 'bg-[#D98989] text-white font-bold shadow-sm'
+                              : 'bg-[#F2F1EE] text-[#767676] hover:bg-[#D98989]/30'
                           }`}
                         >
                           Absent
                         </button>
                         <button
                           onClick={() => handleToggleAttendance(std.student_id, 'late')}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                          className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
                             status === 'late'
-                              ? 'bg-amber-500 text-white shadow-sm'
-                              : 'bg-[#f0f4f8] dark:bg-slate-800 text-slate-500 hover:bg-amber-100'
+                              ? 'bg-[#E8C47A] text-[#2E2E2E] font-bold shadow-sm'
+                              : 'bg-[#F2F1EE] text-[#767676] hover:bg-[#E8C47A]/30'
                           }`}
                         >
                           Late

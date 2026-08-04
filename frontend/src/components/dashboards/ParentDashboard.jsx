@@ -1,142 +1,109 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { Link } from 'react-router-dom';
+import api from '../../services/api';
 
 export default function ParentDashboard() {
   const { user } = useAuth();
-
-  const childInfo = {
+  const [childInfo, setChildInfo] = useState({
     name: 'Alex Johnson',
+    rollNo: '101',
     grade: 'Grade 10 - Section A',
-    rollNumber: '101',
-    attendance: '96.2%',
-    examAverage: '92.5%',
-    teachers: [
-      { name: 'Dr. Sarah Connor', subject: 'Physics & Science', email: 's.connor@smartslate.edu' },
-      { name: 'Prof. Alan Turing', subject: 'Mathematics', email: 'a.turing@smartslate.edu' },
-    ]
-  };
+    attendancePercent: 95.8,
+    gpa: '3.92',
+    rank: '#2 in Class'
+  });
+
+  const [recentMarks, setRecentMarks] = useState([
+    { exam: 'Calculus Mid-Term Test', marks: 95, maxMarks: 100, date: '2026-07-28', grade: 'A+' },
+    { exam: 'Quantum Physics Lab Quiz', marks: 91, maxMarks: 100, date: '2026-07-22', grade: 'A' },
+    { exam: 'Computer Science Data Structures', marks: 98, maxMarks: 100, date: '2026-07-15', grade: 'A+' },
+  ]);
 
   return (
     <div className="space-y-6 animate-fade-in font-sans pb-10">
+      
       {/* Header Banner */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-[#091426] text-white shadow-xl relative overflow-hidden border border-slate-800">
+      <div className="p-6 sm:p-8 rounded-3xl bg-[#6B8FD8] text-white shadow-md relative overflow-hidden border border-[#D7D4CF]">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-[#835500] dark:text-[#feae2c] text-xs font-bold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold uppercase tracking-wider mb-2">
             <span className="material-symbols-outlined text-sm">family_restroom</span>
-            Parent Progress Portal
+            Parent Observer Portal
           </div>
-          <h1 className="font-display font-extrabold text-2xl sm:text-3xl text-white">
-            Welcome, {user?.fullName || user?.name || 'Mr. Johnson'} 👨‍👩‍👧
+          <h1 className="font-display font-bold text-2xl sm:text-3xl text-white">
+            Welcome, {user?.fullName || user?.name || 'Robert Morgan'} 👨‍👩‍👧
           </h1>
-          <p className="text-slate-300 text-xs sm:text-sm mt-1 max-w-xl">
-            Monitoring academic performance, attendance, and teacher remarks for {childInfo.name}.
+          <p className="text-white/80 text-xs sm:text-sm mt-1 max-w-xl">
+            Real-time academic standing, attendance progress gauge, and teacher communications for {childInfo.name}.
           </p>
         </div>
       </div>
 
       {/* Child Summary Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm flex items-center justify-between">
+        <div className="glass-panel p-5 rounded-3xl border border-[#D7D4CF] shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-[#75777d] dark:text-slate-400">Student Name</p>
-            <p className="text-lg font-display font-extrabold text-[#091426] dark:text-white mt-1">{childInfo.name}</p>
-            <p className="text-[10px] text-[#45474c] dark:text-slate-400">{childInfo.grade}</p>
+            <p className="text-xs font-semibold text-[#767676]">Student Name</p>
+            <p className="text-xl font-display font-bold text-[#2E2E2E] mt-1">{childInfo.name}</p>
+            <p className="text-[11px] text-[#6B8FD8] font-semibold mt-0.5">{childInfo.grade}</p>
           </div>
-          <div className="w-11 h-11 rounded-xl bg-[#091426] text-white dark:bg-[#feae2c] dark:text-[#091426] flex items-center justify-center font-bold text-sm">
-            {childInfo.name.charAt(0)}
+          <div className="w-11 h-11 rounded-2xl bg-[#6B8FD8] text-white flex items-center justify-center">
+            <span className="material-symbols-outlined text-2xl">person</span>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-[#dfe3e7] dark:border-[#dfe3e7] dark:border-slate-700 shadow-sm flex items-center justify-between">
+        <div className="glass-panel p-5 rounded-3xl border border-[#D7D4CF] shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-[#75777d] dark:text-slate-400">Overall Attendance</p>
-            <p className="text-2xl font-display font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">{childInfo.attendance}</p>
-            <p className="text-[10px] text-emerald-600 font-semibold mt-0.5">🟢 Regular Attendance</p>
+            <p className="text-xs font-semibold text-[#767676]">Overall Attendance</p>
+            <p className="text-xl font-display font-bold text-[#2E2E2E] mt-1">{childInfo.attendancePercent}%</p>
+            <p className="text-[11px] text-[#A8C8A2] font-semibold mt-0.5">🟢 Verified Standing</p>
           </div>
-          <div className="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+          <div className="w-11 h-11 rounded-2xl bg-[#A8C8A2] text-[#2E2E2E] flex items-center justify-center">
             <span className="material-symbols-outlined text-2xl">event_available</span>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm flex items-center justify-between">
+        <div className="glass-panel p-5 rounded-3xl border border-[#D7D4CF] shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-[#75777d] dark:text-slate-400">Exam Marks Avg</p>
-            <p className="text-2xl font-display font-extrabold text-[#091426] dark:text-white mt-1">{childInfo.examAverage}</p>
-            <p className="text-[10px] text-[#835500] dark:text-[#feae2c] font-semibold mt-0.5">Grade A+</p>
+            <p className="text-xs font-semibold text-[#767676]">Current GPA</p>
+            <p className="text-xl font-display font-bold text-[#2E2E2E] mt-1">{childInfo.gpa}</p>
+            <p className="text-[11px] text-[#6B8FD8] font-semibold mt-0.5">{childInfo.rank}</p>
           </div>
-          <div className="w-11 h-11 rounded-xl bg-amber-100 text-[#835500] flex items-center justify-center">
-            <span className="material-symbols-outlined text-2xl">school</span>
+          <div className="w-11 h-11 rounded-2xl bg-[#6B8FD8]/20 text-[#6B8FD8] flex items-center justify-center">
+            <span className="material-symbols-outlined text-2xl">trophy</span>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm flex items-center justify-between">
+        <div className="glass-panel p-5 rounded-3xl border border-[#D7D4CF] shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-[#75777d] dark:text-slate-400">Active Notebooks</p>
-            <p className="text-2xl font-display font-extrabold text-[#091426] dark:text-white mt-1">12 Notes</p>
-            <p className="text-[10px] text-sky-600 font-semibold mt-0.5">Synced to Cloud</p>
+            <p className="text-xs font-semibold text-[#767676]">Homework Compliance</p>
+            <p className="text-xl font-display font-bold text-[#2E2E2E] mt-1">100%</p>
+            <p className="text-[11px] text-[#A8C8A2] font-semibold mt-0.5">All Submissions Passed</p>
           </div>
-          <div className="w-11 h-11 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center">
-            <span className="material-symbols-outlined text-2xl">book_5</span>
+          <div className="w-11 h-11 rounded-2xl bg-[#E8C47A]/20 text-[#2E2E2E] flex items-center justify-center">
+            <span className="material-symbols-outlined text-2xl">task_alt</span>
           </div>
         </div>
       </div>
 
-      {/* Main Content: Teachers Contact & Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
-        {/* Class Teachers List */}
-        <div className="bg-white dark:bg-[#1e293b] p-6 rounded-3xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-[#dfe3e7] dark:border-slate-700">
-            <h2 className="font-display font-bold text-lg text-[#091426] dark:text-white">Subject Teachers</h2>
-            <span className="text-xs text-[#75777d]">Grade 10A Faculty</span>
-          </div>
-
-          <div className="space-y-3">
-            {childInfo.teachers.map((t, idx) => (
-              <div key={idx} className="p-4 rounded-2xl bg-[#f0f4f8] dark:bg-slate-800/60 border border-[#dfe3e7] dark:border-slate-700 flex items-center justify-between">
-                <div>
-                  <h4 className="font-display font-bold text-sm text-[#091426] dark:text-white">{t.name}</h4>
-                  <p className="text-xs text-[#45474c] dark:text-slate-400 mt-0.5">{t.subject}</p>
-                </div>
-                <Link
-                  to="/chat"
-                  className="px-3.5 py-1.5 bg-[#091426] text-white dark:bg-[#feae2c] dark:text-[#091426] font-bold text-xs rounded-full hover:opacity-90 transition-all flex items-center gap-1"
-                >
-                  <span className="material-symbols-outlined text-sm">chat</span> Message
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Academic Updates Feed */}
-        <div className="bg-white dark:bg-[#1e293b] p-6 rounded-3xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-[#dfe3e7] dark:border-slate-700">
-            <h2 className="font-display font-bold text-lg text-[#091426] dark:text-white">Recent Student Activity</h2>
-            <span className="text-xs text-[#75777d]">Live Sync</span>
-          </div>
-
-          <div className="space-y-3">
-            <div className="p-3.5 rounded-2xl bg-[#f0f4f8] dark:bg-slate-800/40 border border-[#dfe3e7] dark:border-slate-700 flex items-start gap-3">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 shrink-0"></span>
+      {/* Exam Breakdown List */}
+      <div className="glass-panel p-6 rounded-3xl border border-[#D7D4CF] shadow-sm space-y-4">
+        <h2 className="font-display font-bold text-lg text-[#2E2E2E]">Recent Exam & Test Performance</h2>
+        <div className="space-y-3">
+          {recentMarks.map((m, idx) => (
+            <div key={idx} className="p-4 rounded-2xl bg-[#F2F1EE] border border-[#D7D4CF] flex items-center justify-between">
               <div>
-                <p className="text-xs font-bold text-[#091426] dark:text-white">Calculus Active Exam Completed</p>
-                <p className="text-[11px] text-[#45474c] dark:text-slate-400 mt-0.5">Scored 94/100 on Chapter 4 Integration proofs.</p>
+                <h4 className="font-display font-bold text-sm text-[#2E2E2E]">{m.exam}</h4>
+                <p className="text-xs text-[#767676] mt-0.5">Evaluated on {m.date}</p>
+              </div>
+              <div className="text-right">
+                <span className="text-sm font-bold text-[#6B8FD8] block">{m.marks} / {m.maxMarks}</span>
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-[#A8C8A2] text-[#2E2E2E] inline-block mt-1">Grade {m.grade}</span>
               </div>
             </div>
-
-            <div className="p-3.5 rounded-2xl bg-[#f0f4f8] dark:bg-slate-800/40 border border-[#dfe3e7] dark:border-slate-700 flex items-start gap-3">
-              <span className="w-2 h-2 rounded-full bg-amber-500 mt-1.5 shrink-0"></span>
-              <div>
-                <p className="text-xs font-bold text-[#091426] dark:text-white">New Drawing Canvas Note Added</p>
-                <p className="text-[11px] text-[#45474c] dark:text-slate-400 mt-0.5">Created hand-drawn physics optics diagram in Notebooks.</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-
       </div>
+
     </div>
   );
 }

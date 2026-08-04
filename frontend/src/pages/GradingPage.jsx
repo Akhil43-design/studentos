@@ -20,7 +20,8 @@ export default function GradingPage() {
       status: 'pending_review',
       score: 92,
       maxScore: 100,
-      noteSnippet: '∫ f(x)dx = F(b) - F(a) verified using the Fundamental Theorem of Calculus...'
+      noteSnippet: '∫ f(x)dx = F(b) - F(a) verified using the Fundamental Theorem of Calculus...',
+      color: '#8EA8D8'
     },
     {
       id: 'sub_2',
@@ -32,7 +33,8 @@ export default function GradingPage() {
       status: 'pending_review',
       score: 88,
       maxScore: 100,
-      noteSnippet: 'Light wave interference pattern diagrams and refractive index measurement logs...'
+      noteSnippet: 'Light wave interference pattern diagrams and refractive index measurement logs...',
+      color: '#E7E1D8'
     },
     {
       id: 'sub_3',
@@ -44,7 +46,8 @@ export default function GradingPage() {
       status: 'pending_review',
       score: 95,
       maxScore: 100,
-      noteSnippet: 'BST insertion, deletion, and in-order traversal C++ code implementation...'
+      noteSnippet: 'BST insertion, deletion, and in-order traversal C++ code implementation...',
+      color: '#C8CED8'
     }
   ];
 
@@ -70,23 +73,23 @@ export default function GradingPage() {
     <div className="space-y-6 animate-fade-in font-sans pb-10">
       
       {/* Top Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#dfe3e7] dark:border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#D7D4CF]">
         <div>
-          <h1 className="font-display font-extrabold text-2xl text-[#091426] dark:text-white flex items-center gap-2">
-            <span className="material-symbols-outlined text-2xl text-[#835500] dark:text-[#feae2c]">fact_check</span>
+          <h1 className="font-display font-bold text-2xl text-[#2E2E2E] flex items-center gap-2">
+            <span className="material-symbols-outlined text-2xl text-[#6B8FD8]">fact_check</span>
             Assignment Grading & Review Queue
           </h1>
-          <p className="text-xs text-[#45474c] dark:text-slate-400">Evaluate student notebook submissions, rubric feedback, and score publishing</p>
+          <p className="text-xs text-[#767676]">Evaluate student notebook submissions, rubric feedback, and score publishing</p>
         </div>
 
         {/* View Tabs */}
-        <div className="flex bg-[#f0f4f8] dark:bg-slate-800 p-1 rounded-full text-xs font-semibold">
+        <div className="flex bg-[#F2F1EE] p-1 rounded-full text-xs font-semibold border border-[#D7D4CF]">
           <button
             onClick={() => setActiveTab('queue')}
             className={`px-4 py-2 rounded-full transition-all flex items-center gap-1.5 ${
               activeTab === 'queue'
-                ? 'bg-[#091426] text-white dark:bg-[#feae2c] dark:text-[#091426] font-bold shadow-sm'
-                : 'text-[#45474c] dark:text-slate-300'
+                ? 'bg-[#6B8FD8] text-white font-bold shadow-sm'
+                : 'text-[#767676]'
             }`}
           >
             <span className="material-symbols-outlined text-base">rate_review</span>
@@ -96,8 +99,8 @@ export default function GradingPage() {
             onClick={() => setActiveTab('released')}
             className={`px-4 py-2 rounded-full transition-all flex items-center gap-1.5 ${
               activeTab === 'released'
-                ? 'bg-[#091426] text-white dark:bg-[#feae2c] dark:text-[#091426] font-bold shadow-sm'
-                : 'text-[#45474c] dark:text-slate-300'
+                ? 'bg-[#6B8FD8] text-white font-bold shadow-sm'
+                : 'text-[#767676]'
             }`}
           >
             <span className="material-symbols-outlined text-base">published_with_changes</span>
@@ -113,31 +116,34 @@ export default function GradingPage() {
             {pendingSubmissions.map((sub) => (
               <div
                 key={sub.id}
-                className="bg-white dark:bg-[#1e293b] p-6 rounded-3xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm hover:border-[#feae2c] transition-all flex flex-col justify-between"
+                className="glass-panel p-6 rounded-3xl border border-[#D7D4CF] shadow-sm hover:border-[#6B8FD8] transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-[#835500] dark:text-[#feae2c]">
+                    <span
+                      className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full text-[#2E2E2E]"
+                      style={{ backgroundColor: sub.color }}
+                    >
                       {sub.subject}
                     </span>
-                    <span className="text-[10px] text-slate-400">{sub.submittedAt}</span>
+                    <span className="text-[10px] text-[#B7B7B7]">{sub.submittedAt}</span>
                   </div>
 
-                  <h3 className="font-display font-bold text-base text-[#091426] dark:text-white leading-snug">
+                  <h3 className="font-display font-bold text-base text-[#2E2E2E] leading-snug">
                     {sub.assignmentTitle}
                   </h3>
 
-                  <div className="mt-3 p-3 rounded-2xl bg-[#f0f4f8] dark:bg-slate-800/60 border border-[#dfe3e7] dark:border-slate-700 text-xs text-[#45474c] dark:text-slate-300">
-                    <p className="font-bold text-[#091426] dark:text-white mb-1">Student: {sub.studentName} (Roll #{sub.rollNo})</p>
+                  <div className="mt-3 p-3 rounded-2xl bg-[#F2F1EE] border border-[#D7D4CF] text-xs text-[#767676]">
+                    <p className="font-bold text-[#2E2E2E] mb-1">Student: {sub.studentName} (Roll #{sub.rollNo})</p>
                     <p className="line-clamp-2 text-[11px] italic">"{sub.noteSnippet}"</p>
                   </div>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-[#dfe3e7] dark:border-slate-700 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#835500] dark:text-[#feae2c]">Draft Score: {sub.score}/100</span>
+                <div className="mt-5 pt-3 border-t border-[#D7D4CF] flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#6B8FD8]">Draft Score: {sub.score}/100</span>
                   <button
                     onClick={() => handleStartGrading(sub)}
-                    className="px-4 py-2 bg-[#091426] text-white dark:bg-[#feae2c] dark:text-[#091426] font-display font-bold text-xs rounded-full hover:opacity-90 transition-all flex items-center gap-1"
+                    className="px-4 py-2 bg-[#6B8FD8] text-white font-display font-semibold text-xs rounded-full hover:bg-[#8FB7F5] transition-all flex items-center gap-1 shadow-sm"
                   >
                     <span className="material-symbols-outlined text-base">edit_note</span> Grade Submission
                   </button>
@@ -150,27 +156,27 @@ export default function GradingPage() {
 
       {activeTab === 'grading' && selectedSubmission && (
         /* Detailed Interactive Grading Canvas View */
-        <div className="bg-white dark:bg-[#1e293b] rounded-3xl border border-[#dfe3e7] dark:border-slate-700 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-3">
+        <div className="glass-panel rounded-3xl border border-[#D7D4CF] shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-3">
           
           {/* Submission Preview Column */}
-          <div className="lg:col-span-2 p-6 sm:p-8 border-r border-[#dfe3e7] dark:border-slate-700 space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-[#dfe3e7] dark:border-slate-700">
+          <div className="lg:col-span-2 p-6 sm:p-8 border-r border-[#D7D4CF] space-y-6">
+            <div className="flex items-center justify-between pb-4 border-b border-[#D7D4CF]">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#feae2c]">{selectedSubmission.subject}</span>
-                <h2 className="font-display font-bold text-xl text-[#091426] dark:text-white">{selectedSubmission.assignmentTitle}</h2>
-                <p className="text-xs text-[#45474c] dark:text-slate-400 mt-0.5">Submitted by {selectedSubmission.studentName} (Roll #{selectedSubmission.rollNo})</p>
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#6B8FD8]">{selectedSubmission.subject}</span>
+                <h2 className="font-display font-bold text-xl text-[#2E2E2E]">{selectedSubmission.assignmentTitle}</h2>
+                <p className="text-xs text-[#767676] mt-0.5">Submitted by {selectedSubmission.studentName} (Roll #{selectedSubmission.rollNo})</p>
               </div>
               <button
                 onClick={() => setActiveTab('queue')}
-                className="px-3 py-1.5 rounded-full bg-[#f0f4f8] dark:bg-slate-800 text-xs font-semibold text-slate-500"
+                className="px-3 py-1.5 rounded-full bg-[#F2F1EE] text-xs font-semibold text-[#767676] border border-[#D7D4CF]"
               >
                 Back to Queue
               </button>
             </div>
 
             {/* Simulated Handwritten Notebook Submission */}
-            <div className="p-6 rounded-2xl bg-[#faf9f5] dark:bg-slate-900 border border-[#dfe3e7] dark:border-slate-800 min-h-[300px] text-xs font-mono leading-relaxed space-y-4">
-              <div className="p-3 bg-amber-50 dark:bg-amber-950/40 rounded-xl border border-amber-200 text-[#835500] dark:text-[#feae2c]">
+            <div className="p-6 rounded-2xl bg-[#F7F6F3] border border-[#D7D4CF] min-h-[300px] text-xs font-mono leading-relaxed space-y-4 text-[#2E2E2E]">
+              <div className="p-3 bg-[#E7E1D8] rounded-xl border border-[#D7D4CF] text-[#2E2E2E] font-bold">
                 ✍️ Student Handwritten Note Entry:
               </div>
               <p>{selectedSubmission.noteSnippet}</p>
@@ -180,36 +186,36 @@ export default function GradingPage() {
           </div>
 
           {/* Rubric Evaluation Panel */}
-          <div className="p-6 sm:p-8 space-y-6 bg-[#f8fafc] dark:bg-slate-800/40">
-            <h3 className="font-display font-bold text-base text-[#091426] dark:text-white">Grading & Rubric Evaluation</h3>
+          <div className="p-6 sm:p-8 space-y-6 bg-[#F2F1EE]">
+            <h3 className="font-display font-bold text-base text-[#2E2E2E]">Grading & Rubric Evaluation</h3>
 
             {/* Score Input */}
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-[#75777d]">Numerical Score (/100)</label>
+              <label className="text-xs font-semibold uppercase tracking-wider text-[#767676]">Numerical Score (/100)</label>
               <input
                 type="number"
                 max="100"
                 min="0"
                 value={score}
                 onChange={(e) => setScore(Number(e.target.value))}
-                className="w-full mt-2 px-4 py-3 rounded-2xl bg-white dark:bg-slate-800 text-xl font-display font-extrabold text-[#091426] dark:text-white border border-[#dfe3e7] dark:border-slate-700 focus:outline-none focus:border-[#feae2c]"
+                className="w-full mt-2 px-4 py-3 rounded-2xl bg-white text-xl font-display font-bold text-[#2E2E2E] border border-[#D7D4CF] focus:outline-none focus:border-[#6B8FD8]"
               />
             </div>
 
             {/* Feedback Comments */}
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-[#75777d]">Teacher Feedback Remarks</label>
+              <label className="text-xs font-semibold uppercase tracking-wider text-[#767676]">Teacher Feedback Remarks</label>
               <textarea
                 rows="4"
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
-                className="w-full mt-2 p-3.5 rounded-2xl bg-white dark:bg-slate-800 text-xs text-[#091426] dark:text-white border border-[#dfe3e7] dark:border-slate-700 focus:outline-none focus:border-[#feae2c]"
+                className="w-full mt-2 p-3.5 rounded-2xl bg-white text-xs text-[#2E2E2E] border border-[#D7D4CF] focus:outline-none focus:border-[#6B8FD8]"
               />
             </div>
 
             <button
               onClick={handlePublishGrade}
-              className="w-full py-3.5 bg-[#091426] text-white dark:bg-[#feae2c] dark:text-[#091426] font-display font-bold text-xs rounded-full shadow-md hover:opacity-90 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 bg-[#6B8FD8] text-white font-display font-bold text-xs rounded-full shadow-md hover:bg-[#8FB7F5] transition-all flex items-center justify-center gap-2"
             >
               <span className="material-symbols-outlined text-base">send</span>
               Publish Grade & Notify Student
@@ -220,21 +226,21 @@ export default function GradingPage() {
 
       {activeTab === 'released' && (
         /* Released Grades Log */
-        <div className="bg-white dark:bg-[#1e293b] p-6 rounded-3xl border border-[#dfe3e7] dark:border-slate-700 shadow-sm space-y-4">
-          <h2 className="font-display font-bold text-lg text-[#091426] dark:text-white">Published Scorecards</h2>
+        <div className="glass-panel p-6 rounded-3xl border border-[#D7D4CF] shadow-sm space-y-4">
+          <h2 className="font-display font-bold text-lg text-[#2E2E2E]">Published Scorecards</h2>
           {releasedList.length === 0 ? (
-            <p className="text-xs text-slate-400 py-6 text-center">No grades published in this session yet.</p>
+            <p className="text-xs text-[#767676] py-6 text-center">No grades published in this session yet.</p>
           ) : (
             <div className="space-y-3">
               {releasedList.map((r, idx) => (
-                <div key={idx} className="p-4 rounded-2xl bg-[#f0f4f8] dark:bg-slate-800/60 border border-[#dfe3e7] dark:border-slate-700 flex items-center justify-between">
+                <div key={idx} className="p-4 rounded-2xl bg-[#F2F1EE] border border-[#D7D4CF] flex items-center justify-between">
                   <div>
-                    <h4 className="font-display font-bold text-sm text-[#091426] dark:text-white">{r.studentName} • {r.assignmentTitle}</h4>
-                    <p className="text-xs text-[#45474c] dark:text-slate-400 mt-0.5">Remarks: "{r.feedback}"</p>
+                    <h4 className="font-display font-bold text-sm text-[#2E2E2E]">{r.studentName} • {r.assignmentTitle}</h4>
+                    <p className="text-xs text-[#767676] mt-0.5">Remarks: "{r.feedback}"</p>
                   </div>
                   <div className="text-right">
-                    <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 block">{r.finalScore}/100</span>
-                    <span className="text-[10px] text-slate-400">Released {r.releasedAt}</span>
+                    <span className="text-xs font-bold text-[#A8C8A2] block">{r.finalScore}/100</span>
+                    <span className="text-[10px] text-[#B7B7B7]">Released {r.releasedAt}</span>
                   </div>
                 </div>
               ))}
